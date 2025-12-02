@@ -10,9 +10,6 @@ public class LibraryApp {
 	private static void addMember(String name) {
 		librarian.addMember(name);
 	}	
-	private static void addBook(String title) {
-		librarian.addBook(title);
-	}
 	private static void borrowBook(String title, String name) {
 		librarian.borrowBookByMember(title, name);
 	}
@@ -25,7 +22,7 @@ public class LibraryApp {
 		System.out.println(" *** Library management system demo *** ");
 		
 	    // Adding one book, see the Sequence diagram in the lab document.
-		addBook("Dune");
+		librarian.addPaperBook("Dune");
 		
 		// TODO: Create three sequence diagrams for each of these method calls 
 		addMember("Alice"); 			// 1. Add a member
@@ -34,9 +31,9 @@ public class LibraryApp {
 		 
 	    // Adding some books to the catalog
 		System.out.println("\n *** Adding books to the library:");
-		librarian.addBook("Dune");
-		librarian.addBook("1984");
-		librarian.addBook("Moby Dick");
+		librarian.addPaperBook("Dune");
+		librarian.addEBook("1984");
+		librarian.addAudioBook("Moby Dick");
 		
 		// Adding members to the library
 		System.out.println("\n *** Adding members to the library:");
