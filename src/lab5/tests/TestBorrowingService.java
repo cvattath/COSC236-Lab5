@@ -18,9 +18,9 @@ public class TestBorrowingService {
 
     @BeforeEach
     void setUp() {
-        bs = new BorrowingService();
-        m1 = new Member("Bartholomew");
-        m2 = new Member("Bobby");
+        bs = BorrowingService.getInstance();
+        m1 = new Member("Bartholomew", bs);
+        m2 = new Member("Bobby", bs);
         b1 = new PaperBook("1984");
         e1 = new EBook("The King in Yellow");
         a1 = new AudioBook("Fifty Shades of Gray");

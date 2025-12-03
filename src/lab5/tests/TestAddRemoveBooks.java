@@ -12,6 +12,7 @@ import lab5.Member;
 import lab5.Book;
 import lab5.EBook;
 import lab5.AudioBook;
+import lab5.BorrowingService;
 
 
 class TestAddRemoveBooks {
@@ -26,8 +27,9 @@ class TestAddRemoveBooks {
 	Book book1 = new PaperBook("Dune");
 	Book book2 = new EBook("1984");
 	Book book3 = new AudioBook("Moby Dick");
-	
-	Member member = new Member("Grady Booch");
+
+	BorrowingService service = BorrowingService.getInstance();
+	Member member = new Member("Grady Booch", service);
 	
 	@Test
 	void AddBooks() {
