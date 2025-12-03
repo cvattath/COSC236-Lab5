@@ -7,15 +7,18 @@ public class Member {
 
 	private String name;
 	private ArrayList<Book> borrowedBooks; // PaperBook class dependency
-	
-	public Member(String name) {
+	private BorrowingService borrowingService; // Singleton injection
+
+	public Member(String name, BorrowingService service) {
 		this.name = name;
 		this.borrowedBooks = new ArrayList<>();
+		this.borrowingService = service;
 	}
+
 	public String getName() {
 		return name;
 	}
-	public ArrayList<Book> getBorrowedBooks() { 
+	public ArrayList<Book> getBorrowedBooks() {
 		return borrowedBooks;
 	}
 	public void setName(String name) {
@@ -24,18 +27,13 @@ public class Member {
 	public String toString() {
 		return "Member: " + name;
 	}
+
 	public void borrowBook(Book book) {
-		BorrowingService bs = new BorrowingService();
-
-		BorrowingBookResult br = bs.borrowBook(this, book);
-
+		BorrowingBookResult br = borrowingService.borrowBook(this,book);
 		System.out.println("Success? " + br.isSuccess() + " " + br.getBorrowingMessage());
 	}
 	public void returnBook(Book book) {
-		BorrowingService bs = new BorrowingService();
-
-		BorrowingBookResult br = bs.returnBook(this, book);
-
+		BorrowingBookResult br = borrowingService.returnBook(this, book);
 		System.out.println("Success? " + br.isSuccess() + " " + br.getBorrowingMessage());
 	}
 	public void listBorrowedBooks() {
@@ -52,5 +50,10 @@ public class Member {
 		   	 book.setIsAvailable(true);
 	    }
 	    borrowedBooks.clear(); // clear array of borrowed books
+	}
+
+	// Getter for BorrowingService
+	public BorrowingService getBorrowingService() {
+		return borrowingService;
 	}
 }
